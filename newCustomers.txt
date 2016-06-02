@@ -1,0 +1,24 @@
+(dp0
+I2345
+(dp1
+S'lastName'
+p2
+S'"richard" '
+p3
+sS'phoneNumber'
+p4
+S'"234-235-1245"\n'
+p5
+sS'customer id'
+p6
+S' 2345 '
+p7
+sS'email'
+p8
+S' "john@gmail.com"'
+p9
+sS'firstName'
+p10
+S'"john"'
+p11
+ss.

@@ -1,0 +1,287 @@
+
+#Dawa Lama
+#109463980
+#CSE 337
+#Python 2.7
+#Mac OSX
+#Assignment 1
+
+
+
+inputFile = raw_input("Enter the name of the input file: ")
+
+o1 = inputFile.split('.')
+o1 = o1[0]
+outputFile = '%s_output.html' % o1[0] 
+
+inFile = open(inputFile)
+outFile = open(outputFile, 'w')
+
+
+for line in inFile.readlines():
+	cleaned_line = line.replace("<span><span>", "").replace("</span></span>", "")
+	outFile.write(cleaned_line)
+	print cleaned_line
+
+inFile.close()
+outFile.close()
+
+	
+#QUESTION 2
+
+import sys
+
+encryptedText = """pda lupdkj lnkcnwiiejc hwjcqwca swo ejrajpaz xu cqezk rwj nkooqi, w zqpyd ykilqpan lnkcnwiian, wxkqp 25 uawno wck. rwj nkooqi zabejaz deo ckwho bkn lupdkj wo bkhhkso: wj awou wjz ejpqepera hwjcqwca fqop wo lksanbqh wo iwfkn ykilapepkno; klaj okqnya, ok wjukja ywj ykjpnexqpa pk epo zarahkliajp; ykza pdwp eo wo qjzanopwjzwxha wo lhwej ajcheod; oqepwxehepu bkn aranuzwu pwogo, whhksejc bkn odknp zarahkliajp peiao"""
+
+decryptMapp = {
+'v':'z',
+'u':'y',
+'x':'b',
+'w':'a'
+}
+
+# Making use of hint
+for a, b in decryptMapp.iteritems():
+	print "%s -> %s : distance(%s)" % (a, b, ord(b) - ord(a))
+
+decryptedText = ""
+for c in encryptedText:
+	if c in decryptMapp:
+		decryptedText += decryptMapp[c]
+	else:
+		if c.isalpha():
+			distance = ord(c) + 4
+			if distance > 122:
+				distance = ord(c) - 22
+			decryptedText += chr(distance)
+		else:
+			decryptedText += c
+
+sys.stdout.write(decryptedText + '\n')
+
+
+
+#QUESTION 3
+
+import copy
+
+# Part iii of Question 3
+
+a = [1,2]
+b = [a,3]
+c = b[:]
+
+print 'This is the values of c', c
+
+d = copy.deepcopy(c)
+
+a[0] = 7
+b[1]=8
+
+print '\nThis is the answer for part iii'
+print '\nThis is the values of d (deep copied from c): ', d
+
+print 'Changing the value of c[0][1] to 5. And also c[0][0]=7 is assigned. Does this change the value in d as well or not is what we want to see. If value changes, deep copy wasn\'t successful but if value does not change, then deep copy was successful'
+c[0][1]=5
+print 'Here is the value of c: ', c
+print 'Here is the value of d again: ', d
+print 'Since d hasn\'t changed, deep copy was successful'
+
+# Part iv of Question 3
+
+
+c[0][1] = [4,6]
+
+e = copy.deepcopy(c)
+
+print '\nThis is the answer for part iv'
+print '\nThis is the output of c (which is a three-level): ', c
+print 'This is the output of e (which is a copy of c): ', e
+
+print 'We will change the value of c[0][1][1]=9. Does this change the value in e. If value changes, deep copy not successful otherwise successful'
+c[0][1][1]=9
+print 'Here is the value of c which has been altered: ',c 
+print 'Here is the value of d now: ', e
+print 'Since e hasn\'t changed, deep copy was successful'
+#QUESTION 5
+
+import sys
+
+num_input = 4
+data = []
+while num_input:
+	print ('Enter a name to sort')
+	data.append(sys.stdin.readline().lower())
+	num_input = num_input - 1
+
+data.sort()
+for n in range(4):
+	sys.stdout.write(data[n])
+
+
+
+#QUESTION 6
+
+import sys
+import pickle
+
+input1 = sys.argv[1]
+input2 = sys.argv[2]
+
+a = open(input1)
+b = open(input2)
+
+#creating a dictionary of customers
+oldCustomers = {}
+newCustomers = {}
+
+for line in a: 
+	lastName, firstName, email, customerID, phoneNumber = line.split("\t" )
+	customerID = customerID.replace('"','')
+	oldCustomers[int(customerID)] = {'lastName':lastName, 'firstName':firstName,'email':email,'customer id':customerID, 'phoneNumber':phoneNumber}
+
+for line in b:
+	lastName, firstName, email, customerID, phoneNumber = line.split("\t" )
+	customerID = customerID.replace('"','')
+	newCustomers[int(customerID)] = {'lastName':lastName, 'firstName':firstName,'email':email,'customer id':customerID, 'phoneNumber':phoneNumber}
+
+group_a = {}
+group_b = {}
+group_c = {}
+
+for customerID in oldCustomers.keys() + newCustomers.keys():
+     if customerID in oldCustomers and customerID in newCustomers:
+	 customer = newCustomers[customerID]
+         group_c[customerID] = customer
+     elif customerID in newCustomers and customerID not in oldCustomers:
+	customer = newCustomers[customerID]
+	group_b[customerID] = customer
+     elif customerID in oldCustomers and customerID not in newCustomers:
+	customer = oldCustomers[customerID]
+	group_a[customerID] = customer
+
+print "GroupA", group_a
+print "GropuB", group_b
+print "GropuC", group_c
+
+
+
+outputA = open('oldCustomers.txt','w')
+outputB = open('newCustomers.txt','w')
+outputC = open('currentCustomers.txt','w')
+
+
+#writing output to file outputA, outputB and outputC using pickle 
+pickle.dump(group_a, outputA)
+pickle.dump(group_b, outputB)
+pickle.dump(group_c, outputC)
+
+
+#closing all the files opened to read and write
+a.close()
+b.close()
+outputA.close()
+outputB.close()
+outputC.close()
+
+
+
+#Part 7 with Bonus Question included
+
+inputFile = raw_input("Enter the source file name: ")
+
+try:
+	f = open(inputFile)
+except IOError:
+	print ('No File Exist')
+
+notes = []
+notes_href = {}
+postDivStartTxt = "div class=\"post "
+searchText = "data-notes=\""
+searchTextLength = len(searchText)
+
+hrefs = []
+postDiv = False
+href = None
+for line in f:
+	if line.find(postDivStartTxt) >= 0:
+		href_start = line.find("href=\"")+6
+		href = line[href_start:line.find("\"", href_start)]
+		hrefs.append(href)
+
+	if line.find(searchText) >= 0:
+		notesStart = line.find(searchText) + searchTextLength
+		note = line[notesStart:line.find("\"", notesStart)]
+		notes.append(int(note))
+		if href:
+			notes_href[href] = int(note)
+			href = None
+
+print "Number of notes", len(notes)
+notes.sort(reverse=True)
+print "Top 5 notes", notes[:5]
+print "Extra Credit HTML"
+idx = 0
+top_hrefs = []
+for href in sorted(notes_href, key=lambda x: notes_href[x], reverse=True)[:5]:
+	idx = idx + 1
+	top_hrefs.append("#%d: <a href=\"%s\">%d</a>" % (idx, href,  notes_href[href])) 
+
+print "<html><body>\n%s</body/<html>" % "<br><br>\n".join(top_hrefs)
+	
+
+#QUESTION 8 
+
+
+
+# PART I  - DIFFERENCE BETWEEN TWO LIST
+
+def diff(a,b):
+	return [i for i in a if i not in b]
+
+def common(a, b):
+	return [i for i in a if i in b]
+				
+
+x = [1,2,3,4,5,6,7,8]
+y = [2,3,4,9,10]
+
+z = diff(x,y)
+
+
+
+
+# PART II - UNION OF TWO SETS 
+def union(a,b):
+	only_in_a = diff(a, b)
+	only_in_b = diff(b, a) 
+	common_in_ab = common(a, b)
+	return only_in_a + only_in_b + common_in_ab
+
+result = union(x,y)
+
+
+	
+
+
+# PART III - SHOW EXAMPLES
+
+print 'this is x ', x
+print 'this is y ', y
+
+print 'the difference sample of x-y: ',z
+print 'the union sample x+y: ', result
+
+
+a = [1, 2, 3]
+b = [3, 4, 5]
+assert [1, 2] == diff(a, b)
+assert [4, 5] == diff(b, a)
+assert [1, 2, 3, 4, 5] == sorted(union(a, b))
+
+a = [1, 2, 3]
+b = [2, 3, 4]
+assert [1] == diff(a, b)
+assert [4] == diff(b, a)
+assert [1, 2, 3, 4] == sorted(union(a, b))

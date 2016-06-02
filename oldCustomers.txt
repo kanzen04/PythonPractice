@@ -1,0 +1,24 @@
+(dp0
+I1235
+(dp1
+S'lastName'
+p2
+S'"tenzi" '
+p3
+sS'phoneNumber'
+p4
+S' "534-234-2352"\n'
+p5
+sS'customer id'
+p6
+S'1235'
+p7
+sS'email'
+p8
+S'"ten@live.com" '
+p9
+sS'firstName'
+p10
+S'"sherpa" '
+p11
+ss.

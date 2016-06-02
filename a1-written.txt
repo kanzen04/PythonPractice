@@ -1,0 +1,43 @@
+Dawa Lama 
+109463980
+CSE 337
+Assignment 1
+
+QUESTION 3
+
+i. c will output [[1,2],3]
+
+ii. Yes the outcome matched my prediction. When we created c, we copied the values of list b. Then we changed a[0]=7, this will be passed onto c because in c there is a which is a direct refernce to a. but when we change b[1]=8, it will not change because we are only copying the values of b and not using its refernce. c[1] however has a reference of a directly when the value of b is copied to it.
+
+***
+For Part iii and iv: source codes are available. This is just a short description.
+***
+
+iii. to use copy, we need to import copy. then let's say we want to copy c to d, then we can use d = copy.deepcopy(c)
+
+iv. 
+	Since part iv asks for outcome. It is also shown in the program.
+	d = [[7,[4,6]],3] is the outcome which is  copied from c which is a 3-level list.
+
+
+
+QUESTION 4
+
+i. 
+a. if n=2 and r=1
+	since n>r, the loop will break
+	it will also look for the if n<2 but it doesn't fulfil so it's the end of the program 
+
+b. if n=1 and r=1
+	n==r, so the iteration will continue to the next one. n=2, from the question i assume r=1. Since n>r, the loop will break and same as part a.
+
+c. if n=2 and r=2
+	n==r, it will continue but the iteration is only for range(3), then the else statement will be executed and "Wow, you are lucky" will be printed.
+
+d. if n=0 and r=2
+	it does not satisfy line 8 and 9, so x will be printed. it goes back to the iteration, n=1 and r=2, will print x again since doesn't satisfy line 8 and 9. n=2 and r=2. then the same outcome as c after this.
+
+
+
+ii.  when n = 2 and r = 2, since n is only in range(3) which is (0,1,2); the iteration ends since the condition is not satisfied and the else statement is printed. "Wow, you are lucky" will be printed. So, when n is out of range, "Wow, you are lucky" will be printed.
+	

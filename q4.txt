@@ -1,0 +1,23 @@
+
+
+
+QUESTION 4
+
+i. 
+a. if n=2 and r=1
+	since n>r, the loop will break
+	it will also look for the if n<2 but it doesn't fulfil so it's the end of the program 
+
+b. if n=1 and r=1
+	n==r, so the iteration will continue to the next one. n=2, from the question i assume r=1. Since n>r, the loop will break and same as part a.
+
+c. if n=2 and r=2
+	n==r, it will continue but the iteration is only for range(3), then the else statement will be executed and "Wow, you are lucky" will be printed.
+
+d. if n=0 and r=2
+	it does not satisfy line 8 and 9, so x will be printed. it goes back to the iteration, n=1 and r=2, will print x again since doesn't satisfy line 8 and 9. n=2 and r=2. then the same outcome as c after this.
+
+
+
+ii.  when n = 2 and r = 2, since n is only in range(3) which is (0,1,2); the iteration ends since the condition is not satisfied and the else statement is printed. "Wow, you are lucky" will be printed. So, when n is out of range, "Wow, you are lucky" will be printed.
+	

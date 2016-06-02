@@ -1,0 +1,24 @@
+(dp0
+I1234
+(dp1
+S'lastName'
+p2
+S'"dawa"'
+p3
+sS'phoneNumber'
+p4
+S' "234-235-1234"\n'
+p5
+sS'customer id'
+p6
+S'1234'
+p7
+sS'email'
+p8
+S' "dawa@gmail.com"'
+p9
+sS'firstName'
+p10
+S' "lama"'
+p11
+ss.

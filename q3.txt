@@ -1,0 +1,20 @@
+Dawa Lama 
+109463980
+CSE 337
+Assignment 1
+
+QUESTION 3
+
+i. c will output [[1,2],3]
+
+ii. Yes the outcome matched my prediction. When we created c, we copied the values of list b. Then we changed a[0]=7, this will be passed onto c because in c there is a which is a direct refernce to a. but when we change b[1]=8, it will not change because we are only copying the values of b and not using its refernce. c[1] however has a reference of a directly when the value of b is copied to it.
+
+***
+For Part iii and iv: source codes are available. This is just a short description.
+***
+
+iii. to use copy, we need to import copy. then let's say we want to copy c to d, then we can use d = copy.deepcopy(c)
+
+iv. 
+	Since part iv asks for outcome. It is also shown in the program.
+	d = [[7,[4,6]],3] is the outcome which is  copied from c which is a 3-level list.

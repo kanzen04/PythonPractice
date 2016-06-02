@@ -1,0 +1,2 @@
+"dawa"	 "lama"	 "dawa@gmail.com"	"1234"	 "234-235-1234"
+"richard" 	"john"	 "john@gmail.com"	 "2345" 	"234-235-1245"
